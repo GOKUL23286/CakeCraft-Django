@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Product Details | ChocoCraft</title>
+
+    <link rel="stylesheet" href="css/style.css">
+
+</head>
+
+
+<body>
+
+
+    <header>
+
+        <nav class="navbar">
+
+            <div class="logo">
+
+                <h2>🍫 ChocoCraft</h2>
+
+            </div>
+            <li id="loginLink">
+
+                <a href="login.html">
+Login 🔐
+</a>
+
+            </li>
+
+
+            <li id="userBox" style="display:none;">
+
+                <span id="userName">
+
+</span>
+
+            </li>
+
+
+            <li id="logoutLink" style="display:none;">
+
+                <a href="#" onclick="logoutUser()">
+
+Logout 🚪
+
+</a>
+
+            </li>
+
+
+            <ul class="nav-links">
+
+                <li><a href="index.html">Home</a></li>
+
+                <li><a href="products.html">Products</a></li>
+
+                <li><a href="cart.html">Cart</a></li>
+
+            </ul>
+
+
+        </nav>
+
+    </header>
+
+
+
+    <section class="product-details">
+
+
+
+        <div class="details-box">
+
+
+
+            <div class="product-image">
+
+
+                <img src="images/choco-cake.jpg" id="productImage">
+
+
+            </div>
+
+
+
+
+            <div class="product-info">
+
+
+                <h1 id="productName">
+
+                    Chocolate Cake
+
+                </h1>
+
+
+                <h2>
+
+                    £<span id="productPrice">
+19.99
+</span>
+
+                </h2>
+
+
+
+                <p>
+
+                    Delicious chocolate cake made with premium cocoa, fresh cream and special ChocoCraft recipe. Perfect for birthdays and celebrations.
+
+                </p>
+
+
+
+                <div class="quantity">
+
+
+                    <button onclick="decreaseQty()">
+
+-
+
+</button>
+
+
+
+                    <span id="quantity">
+
+1
+
+</span>
+
+
+
+                    <button onclick="increaseQty()">
+
++
+
+</button>
+
+
+                </div>
+
+
+
+                <br>
+
+
+                <button onclick="addProductCart()">
+
+Add To Cart 🛒
+
+</button>
+
+
+
+                <br><br>
+
+                <a href="{% url 'cart' %}">
+                    <button>View Cart 🛒</button>
+                </a>
+
+                Next ➡️ Cart
+
+                </button>
+
+
+
+            </div>
+
+
+        </div>
+
+
+
+    </section>
+
+
+
+
+    <script src="js/script.js"></script>
+
+
+
+</body>
+
+</html>
+<p id="productDescription">
+
+</p>

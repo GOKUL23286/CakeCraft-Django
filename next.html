@@ -1,0 +1,1924 @@
+<!DOCTYPE html>
+<html lang="en">
+🏠 Back To Home
+
+</a>
+
+</div>
+
+</section>
+
+</body>
+
+</html>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Admin Login | ChocoCraft</title>
+
+    <link rel="stylesheet" href="../css/admin.css">
+
+</head>
+<button class="btn1" onclick="goProducts()">
+Order Now 🍰
+</button>
+
+
+</html>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Admin Dashboard | ChocoCraft</title>
+
+    <link rel="stylesheet" href="../css/admin.css">
+
+</head>
+
+
+<body>
+
+
+    <div class="dashboard">
+
+
+        <h1>🍫 ChocoCraft Admin Dashboard</h1>
+
+
+        <div class="admin-cards">
+
+
+            <div class="admin-card">
+
+                <h2>Products</h2>
+
+                <p id="productCount">25</p>
+
+                <button>
+Manage Products
+</button>
+
+            </div>
+
+
+
+            <div class="admin-card">
+
+                <h2>Orders</h2>
+
+                <p id="orderCount">120</p>
+
+                <button>
+View Orders
+</button>
+
+            </div>
+
+
+
+            <div class="admin-card">
+
+                <h2>Customers</h2>
+
+                <p id="customerCount">85</p>
+
+                <button>
+Customers
+</button>
+
+            </div>
+
+
+
+            <div class="admin-card">
+
+                <h2>Revenue</h2>
+
+                <p>£2500</p>
+
+                <button>
+Reports
+</button>
+
+            </div>
+
+
+        </div>
+
+
+
+        <br><br>
+
+
+        <div class="admin-menu">
+
+
+            <a href="add-product.html">
+➕ Add Product
+</a>
+
+
+            <a href="products.html">
+📦 Products
+</a>
+
+
+            <a href="../index.html">
+🏠 Website
+</a>
+
+
+        </div>
+
+
+
+    </div>
+
+
+    <script src="../js/admin.js"></script>
+
+
+</body>
+
+</html>
+<!-- ===================================
+     ADMIN ADD PRODUCT PAGE
+     add-product.html
+=================================== -->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Add Product | ChocoCraft</title>
+
+    <link rel="stylesheet" href="../css/admin.css">
+
+</head>
+
+
+<body>
+
+
+    <div class="dashboard">
+
+
+        <h1>➕ Add New Product</h1>
+
+
+
+        <div class="contact-container">
+
+
+            <form class="contact-form" onsubmit="event.preventDefault(); addProduct();">
+
+
+
+                <input type="text" id="productName" placeholder="Product Name" required>
+
+
+
+                <input type="number" id="productPrice" placeholder="Product Price" required>
+
+
+
+                <input type="text" id="productImage" placeholder="Image Path (images/cake.jpg)" required>
+
+
+
+                <select id="productCategory">
+
+
+<option value="cake">
+Cake
+</option>
+
+
+<option value="chocolate">
+Chocolate
+</option>
+
+
+<option value="cupcake">
+Cup Cake
+</option>
+
+
+<option value="donut">
+Donut
+</option>
+
+
+</select>
+
+
+
+                <textarea id="productDescription" placeholder="Product Description">
+</textarea>
+
+
+
+                <button type="submit">
+
+Add Product 🍰
+
+</button>
+
+
+
+            </form>
+
+
+        </div>
+
+
+        <br>
+
+
+        <a href="dashboard.html">
+
+⬅ Back Dashboard
+
+</a>
+
+
+    </div>
+
+
+
+    <script src="../js/admin.js"></script>
+
+
+</body>
+
+</html>
+<!-- ===================================
+     ADMIN PRODUCTS MANAGEMENT
+     products.html
+=================================== -->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Manage Products | ChocoCraft</title>
+
+    <link rel="stylesheet" href="../css/admin.css">
+
+</head>
+
+
+<body>
+
+
+    <div class="dashboard">
+
+
+        <h1>📦 Manage Products</h1>
+
+
+        <div id="adminProducts" class="product-container">
+
+        </div>
+
+
+        <br>
+
+
+        <a href="add-product.html">
+
+➕ Add New Product
+
+</a>
+
+
+        <br><br>
+
+
+        <a href="dashboard.html">
+
+⬅ Back Dashboard
+
+</a>
+
+
+    </div>
+
+
+
+    <script src="../js/admin.js"></script>
+
+
+    <script>
+        function displayAdminProducts() {
+
+
+            let products =
+                JSON.parse(
+                    localStorage.getItem("products")
+                ) || [];
+
+
+
+            let box =
+                document.getElementById("adminProducts");
+
+
+
+            box.innerHTML = "";
+
+
+
+            if (products.length === 0) {
+
+
+                box.innerHTML =
+
+                    "<h2>No Products Added</h2>";
+
+                return;
+
+
+            }
+
+
+
+            products.forEach((product, index) => {
+
+
+                box.innerHTML += `
+
+
+<div class="card">
+
+
+<img src="../${product.image}">
+
+
+<h3>${product.name}</h3>
+
+
+<p>£${product.price}</p>
+
+
+<button onclick="deleteProduct(${index})">
+
+Delete
+
+</button>
+
+
+</div>
+
+
+`;
+
+
+            });
+
+
+        }
+
+
+
+        displayAdminProducts();
+    </script>
+
+
+</body>
+
+</html>
+<!-- ===================================
+     ADMIN ORDERS PAGE
+     orders.html
+=================================== -->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Orders | ChocoCraft</title>
+
+    <link rel="stylesheet" href="../css/admin.css">
+
+</head>
+
+
+<body>
+
+
+    <div class="dashboard">
+
+
+        <h1>📦 Customer Orders</h1>
+
+
+
+        <div id="orderList" class="product-container">
+
+        </div>
+
+
+
+        <br>
+
+
+        <a href="dashboard.html">
+
+⬅ Back Dashboard
+
+</a>
+
+
+    </div>
+
+
+
+    <script>
+        function showOrders() {
+
+
+            let orders =
+                JSON.parse(
+                    localStorage.getItem("orders")
+                ) || [];
+
+
+
+            let box =
+                document.getElementById("orderList");
+
+
+
+            box.innerHTML = "";
+
+
+
+            if (orders.length === 0) {
+
+
+                box.innerHTML =
+                    "<h2>No Orders Found</h2>";
+
+
+                return;
+
+
+            }
+
+
+
+            orders.forEach((order, index) => {
+
+
+                box.innerHTML += `
+
+
+<div class="card">
+
+
+<h3>
+Order #${index+1}
+</h3>
+
+
+<p>
+Customer:
+${order.name || "Guest"}
+</p>
+
+
+<p>
+Total:
+£${order.total || 0}
+</p>
+
+
+<p>
+Date:
+${order.date || "Today"}
+</p>
+
+
+
+<button onclick="updateStatus(${index})">
+
+Change Status
+
+</button>
+
+
+
+<p id="status${index}">
+
+Status:
+${order.status || "Pending"}
+
+</p>
+
+
+</div>
+
+
+`;
+
+
+            });
+
+
+        }
+
+
+
+
+        function updateStatus(index) {
+
+
+            let orders =
+                JSON.parse(
+                    localStorage.getItem("orders")
+                ) || [];
+
+
+
+            orders[index].status = "Delivered";
+
+
+
+            localStorage.setItem(
+
+                "orders",
+
+                JSON.stringify(orders)
+
+            );
+
+
+
+            alert("Order Status Updated ✅");
+
+
+            showOrders();
+
+
+        }
+
+
+
+        showOrders();
+    </script>
+
+
+</body>
+
+</html>
+
+<body>
+
+    <script src="js/script.js"></script>
+</body>
+<header>
+    <nav class="navbar">
+        <h2 class="logo">🍫 ChocoCraft</h2>
+
+        <ul class="nav-links">
+            <li><a href="#">Home</a></li>
+            <li><a href="#">Cakes</a></li>
+            <li><a href="#">Chocolates</a></li>
+            <li><a href="#">About</a></li>
+            <li><a href="#">Contact</a></li>
+        </ul>
+
+        <button class="cart-btn">🛒 Cart</button>
+    </nav>
+</header>
+<section class="hero">
+    <div class="hero-content">
+        <h1>Fresh Cakes & Premium Chocolates</h1>
+        <p>Celebrate every moment with sweetness.</p>
+
+        <button class="shop-btn">Shop Now</button>
+    </div>
+</section>
+<section class="products">
+
+    <h2>Our Best Sellers</h2>
+
+    <div class="product-container">
+
+        <div class="card">
+            <img src="images/choco-cake.jpg" alt="Chocolate Cake">
+            <h3>Chocolate Cake</h3>
+            <p>£19.99</p>
+            <button>Add to Cart</button>
+        </div>
+
+        <div class="card">
+            <img src="images/truffle.jpg" alt="Truffle Cake">
+            <h3>Truffle Cake</h3>
+            <p>£24.99</p>
+            <button>Add to Cart</button>
+        </div>
+
+        <div class="card">
+            <img src="images/chocolate-box.jpg" alt="Chocolate Box">
+            <h3>Chocolate Box</h3>
+            <p>£14.99</p>
+            <button>Add to Cart</button>
+        </div>
+
+    </div>
+
+</section>
+<div class="card">
+
+    <span class="discount">20% OFF</span>
+    <span class="fav">❤</span>
+
+    <img src="images/choco-cake.jpg" alt="Chocolate Cake">
+
+    <h3>Chocolate Cake</h3>
+
+    <div class="rating">
+        ⭐⭐⭐⭐⭐
+    </div>
+
+    <p>£19.99</p>
+
+    <button>Add to Cart</button>
+
+</div><button class="cart-btn">
+    🛒 Cart (<span id="count">0</span>)
+</button>
+<button onclick="addToCart()">Add to Cart</button>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shopping Cart</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+    <h1>Your Shopping Cart</h1>
+
+    <div class="cart-container">
+
+        <div class="cart-item">
+            <img src="images/choco-cake.jpg" alt="Cake">
+
+            <div>
+                <h3>Chocolate Cake</h3>
+                <p>£19.99</p>
+            </div>
+
+            <button>Remove</button>
+        </div>
+
+    </div>
+
+</body>
+
+</html><input type="text" placeholder="Search cakes..."><select>
+    <option>All</option>
+    <option>Cakes</option>
+    <option>Chocolates</option>
+    <option>Cookies</option>
+</select><span class="wishlist">🤍</span><button>Login</button>
+<button>Sign Up</button><button class="checkout">
+    Proceed to Checkout
+</button>
+<footer>
+    <p>© 2026 ChocoCraft. All Rights Reserved.</p>
+</footer>
+<form>
+    <input type="text" placeholder="Name">
+    <input type="email" placeholder="Email">
+    <textarea placeholder="Message"></textarea>
+    <button>Send</button>
+</form>
+<section class="categories">
+
+    <h2>Shop by Category</h2>
+
+    <div class="category-container">
+
+        <div class="category-card">
+            <img src="images/cake.png" alt="Cake">
+            <h3>Cakes</h3>
+        </div>
+
+        <div class="category-card">
+            <img src="images/chocolate.png" alt="Chocolate">
+            <h3>Chocolates</h3>
+        </div>
+
+        <div class="category-card">
+            <img src="images/cupcake.png" alt="Cup Cake">
+            <h3>Cup Cakes</h3>
+        </div>
+
+        <div class="category-card">
+            <img src="images/donut.png" alt="Donut">
+            <h3>Donuts</h3>
+        </div>
+
+    </div>
+
+</section>
+<!-- PRODUCT 3 -->
+
+<div class="card">
+
+    <span class="discount">
+                    10% OFF
+                </span>
+
+    <span class="fav">
+                    ❤
+                </span>
+
+    <img src="images/truffle-cake.jpg" alt="Truffle Cake">
+
+    <h3>
+        Truffle Cake
+    </h3>
+
+    <div class="rating">
+        ⭐⭐⭐⭐⭐
+    </div>
+
+    <p>£22.99</p>
+
+    <button onclick="addToCart()">
+                    Add To Cart
+                </button>
+
+</div>
+
+<!-- PRODUCT 4 -->
+
+<div class="card">
+
+    <span class="discount">
+                    NEW
+                </span>
+
+    <span class="fav">
+                    ❤
+                </span>
+
+    <img src="images/chocolate-box.jpg" alt="Chocolate Box">
+
+    <h3>
+        Premium Chocolate Box
+    </h3>
+
+    <div class="rating">
+        ⭐⭐⭐⭐⭐
+    </div>
+
+    <p>£14.99</p>
+
+    <button onclick="addToCart()">
+                    Add To Cart
+                </button>
+
+</div>
+
+<!-- PRODUCT 5 -->
+
+<div class="card">
+
+    <span class="discount">
+                    HOT
+                </span>
+
+    <span class="fav">
+                    ❤
+                </span>
+
+    <img src="images/black-forest.jpg" alt="Black Forest">
+
+    <h3>
+        Black Forest Cake
+    </h3>
+
+    <div class="rating">
+        ⭐⭐⭐⭐⭐
+    </div>
+
+    <p>£21.99</p>
+
+    <button onclick="addToCart()">
+                    Add To Cart
+                </button>
+
+</div>
+
+<!-- PRODUCT 6 -->
+
+<div class="card">
+
+    <span class="discount">
+                    25% OFF
+                </span>
+
+    <span class="fav">
+                    ❤
+                </span>
+
+    <img src="images/cupcake.jpg" alt="Cup Cake">
+
+    <h3>
+        Chocolate Cup Cake
+    </h3>
+
+    <div class="rating">
+        ⭐⭐⭐⭐⭐
+    </div>
+
+    <p>£8.99</p>
+
+    <button onclick="addToCart()">
+                    Add To Cart
+                </button>
+
+</div>
+
+<!-- PRODUCT 7 -->
+
+<div class="card">
+
+    <span class="discount">
+                    SALE
+                </span>
+
+    <span class="fav">
+                    ❤
+                </span>
+
+    <img src="images/donut.jpg" alt="Donut">
+
+    <h3>
+        Choco Donut
+    </h3>
+
+    <div class="rating">
+        ⭐⭐⭐⭐⭐
+    </div>
+
+    <p>£5.99</p>
+
+    <button onclick="addToCart()">
+                    Add To Cart
+                </button>
+
+</div>
+
+<!-- PRODUCT 8 -->
+
+<div class="card">
+
+    <span class="discount">
+                    BEST
+                </span>
+
+    <span class="fav">
+                    ❤
+                </span>
+
+    <img src="images/brownie.jpg" alt="Brownie">
+
+    <h3>
+        Chocolate Brownie
+    </h3>
+
+    <div class="rating">
+        ⭐⭐⭐⭐⭐
+    </div>
+
+    <p>£11.99</p>
+
+    <button onclick="addToCart()">
+                    Add To Cart
+                </button>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- PRODUCTS END -->
+
+
+
+<!-- CUSTOMER REVIEW -->
+
+<section class="reviews">
+
+    <h2 class="section-title">
+        Happy Customers
+    </h2>
+
+    <div class="review-container">
+
+        <div class="review-card">
+            <h3>John</h3>
+            <p>⭐⭐⭐⭐⭐</p>
+            <p>
+                Amazing cakes and fast delivery.
+            </p>
+        </div>
+
+        <div class="review-card">
+            <h3>Emma</h3>
+            <p>⭐⭐⭐⭐⭐</p>
+            <p>
+                Fresh chocolates with premium quality.
+            </p>
+        </div>
+
+        <div class="review-card">
+            <h3>David</h3>
+            <p>⭐⭐⭐⭐⭐</p>
+            <p>
+                Best cake shop in town.
+            </p>
+        </div>
+
+    </div>
+
+</section>
+<!-- CONTACT SECTION -->
+
+<section class="contact">
+
+    <h2 class="section-title">
+        Contact Us
+    </h2>
+
+    <div class="contact-container">
+
+        <div class="contact-info">
+
+            <h3>🍫 ChocoCraft</h3>
+
+            <p>
+                Fresh Cakes & Premium Chocolates
+            </p>
+
+            <p>
+                📍 123 Sweet Street, London
+            </p>
+
+            <p>
+                📞 +44 1234 567890
+            </p>
+
+            <p>
+                📧 chococraft@email.com
+            </p>
+
+        </div>
+
+        <form class="contact-form">
+
+            <input type="text" placeholder="Your Name" required>
+
+            <input type="email" placeholder="Your Email" required>
+
+            <textarea rows="5" placeholder="Write your message..."></textarea>
+
+            <button type="submit">
+                    Send Message
+                </button>
+
+        </form>
+
+    </div>
+
+</section>
+
+
+
+<!-- FOOTER -->
+
+<footer>
+
+    <div class="footer-container">
+
+        <div>
+
+            <h3>🍫 ChocoCraft</h3>
+
+            <p>
+                Premium Cakes & Chocolates
+            </p>
+
+        </div>
+
+        <div>
+
+            <h4>Quick Links</h4>
+
+            <ul>
+
+                <li><a href="#">Home</a></li>
+
+                <li><a href="#">Products</a></li>
+
+                <li><a href="#">Offers</a></li>
+
+                <li><a href="#">Contact</a></li>
+
+            </ul>
+
+        </div>
+
+        <div>
+
+            <h4>Follow Us</h4>
+
+            <div class="social">
+
+                <i class="fab fa-facebook-f"></i>
+
+                <i class="fab fa-instagram"></i>
+
+                <i class="fab fa-whatsapp"></i>
+
+                <i class="fab fa-youtube"></i>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <hr>
+
+    <p class="copyright">
+
+        © 2026 ChocoCraft
+        <!-- CONTACT SECTION -->
+
+        <section class="contact">
+
+            <h2 class="section-title">
+                Contact Us
+            </h2>
+
+            <div class="contact-container">
+
+                <div class="contact-info">
+
+                    <h3>🍫 ChocoCraft</h3>
+
+                    <p>
+                        Fresh Cakes & Premium Chocolates
+                    </p>
+
+                    <p>
+                        📍 123 Sweet Street, London
+                    </p>
+
+                    <p>
+                        📞 +44 1234 567890
+                    </p>
+
+                    <p>
+                        📧 chococraft@email.com
+                    </p>
+
+                </div>
+
+                <form class="contact-form">
+
+                    <input type="text" placeholder="Your Name" required>
+
+                    <input type="email" placeholder="Your Email" required>
+
+                    <textarea rows="5" placeholder="Write your message..."></textarea>
+
+                    <button type="submit">
+                    Send Message
+                </button>
+
+                </form>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- FOOTER -->
+
+        <footer>
+
+            <div class="footer-container">
+
+                <div>
+
+                    <h3>🍫 ChocoCraft</h3>
+
+                    <p>
+                        Premium Cakes & Chocolates
+                    </p>
+
+                </div>
+
+                <div>
+
+                    <h4>Quick Links</h4>
+
+                    <ul>
+
+                        <li><a href="#">Home</a></li>
+
+                        <li><a href="#">Products</a></li>
+
+                        <li><a href="#">Offers</a></li>
+
+                        <li><a href="#">Contact</a></li>
+
+                    </ul>
+
+                </div>
+
+                <div>
+
+                    <h4>Follow Us</h4>
+
+                    <div class="social">
+
+                        <i class="fab fa-facebook-f"></i>
+
+                        <i class="fab fa-instagram"></i>
+
+                        <i class="fab fa-whatsapp"></i>
+
+                        <i class="fab fa-youtube"></i>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <hr>
+
+            <p class="copyright">
+
+                © 2026 ChocoCraft. All Rights Reserved.
+
+            </p>
+
+        </footer>
+
+
+
+        <!-- JAVASCRIPT -->
+
+        <script src="js/script.js"></script>
+
+        </body>
+
+        </html>
+        <!DOCTYPE html>
+        <html lang="en">
+
+        <head>
+
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+            <title>About | ChocoCraft</title>
+
+            <link rel="stylesheet" href="css/style.css">
+
+        </head>
+
+        <body>
+
+            <header>
+
+                <nav class="navbar">
+
+                    <div class="logo">
+                        <h2>🍫 ChocoCraft</h2>
+                    </div>
+
+                    <ul class="nav-links">
+
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="#">Products</a></li>
+                        <li><a href="#">Offers</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+
+                    </ul>
+
+                </nav>
+
+            </header>
+
+            <section class="contact">
+
+                <h2 class="section-title">
+
+                    About ChocoCraft
+
+                </h2>
+
+                <div class="contact-container">
+
+                    <div class="contact-info">
+
+                        <h3>Who We Are</h3>
+
+                        <p>
+
+                            ChocoCraft is a premium cake and chocolate store. We prepare fresh cakes every day using high-quality ingredients. Our goal is to make every celebration sweeter.
+
+                        </p>
+
+                        <p>
+
+                            ✔ Fresh Cakes
+
+                        </p>
+
+                        <p>
+
+                            ✔ Premium Chocolates
+
+                        </p>
+
+                        <p>
+
+                            ✔ Birthday Cakes
+
+                        </p>
+
+                        <p>
+
+                            ✔ Wedding Cakes
+
+                        </p>
+
+                        <p>
+
+                            ✔ Home Delivery
+
+                        </p>
+
+                    </div>
+
+                    <img src="images/choco-cake.jpg" style="width:400px;border-radius:20px;">
+
+                </div>
+
+            </section>
+
+            <script src="js/script.js"></script>
+
+        </body>
+
+        </html>
+        <!DOCTYPE html>
+        <html lang="en">
+
+        <head>
+
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+            <title>Contact | ChocoCraft</title>
+
+            <link rel="stylesheet" href="css/style.css">
+
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+
+        </head>
+
+        <body>
+
+            <header>
+
+                <nav class="navbar">
+
+                    <div class="logo">
+                        <h2>🍫 ChocoCraft</h2>
+                    </div>
+
+                    <ul class="nav-links">
+
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="cart.html">Cart</a></li>
+                        <li><a href="contact.html" class="active">Contact</a></li>
+
+                    </ul>
+
+                </nav>
+
+            </header>
+
+
+            <section class="contact">
+
+                <h2 class="section-title">
+
+                    Contact Us
+
+                </h2>
+
+                <div class="contact-container">
+
+                    <div class="contact-info">
+
+                        <h3>🍫 ChocoCraft</h3>
+
+                        <p><i class="fa-solid fa-location-dot"></i> 123 Sweet Street, London</p>
+
+                        <p><i class="fa-solid fa-phone"></i> +44 1234 567890</p>
+
+                        <p><i class="fa-solid fa-envelope"></i> chococraft@email.com</p>
+
+                        <p><i class="fa-solid fa-clock"></i> Mon - Sun : 9.00 AM - 10.00 PM</p>
+
+                    </div>
+
+
+                    <form class="contact-form">
+
+                        <input type="text" placeholder="Your Name" required>
+
+                        <input type="email" placeholder="Your Email" required>
+
+                        <input type="text" placeholder="Subject">
+
+                        <textarea rows="6" placeholder="Message"></textarea>
+
+                        <button type="submit">
+
+Send Message
+
+</button>
+
+                    </form>
+
+                </div>
+
+            </section>
+
+            <footer>
+
+                <p class="copyright">
+
+                    © 2026 ChocoCraft. All Rights Reserved.
+
+                </p>
+
+            </footer>
+
+            <script src="js/script.js"></script>
+
+        </body>
+
+        </html>
+        <!DOCTYPE html>
+        <html lang="en">
+
+        <head>
+
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+            <title>Shopping Cart | ChocoCraft</title>
+
+            <link rel="stylesheet" href="css/style.css">
+
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+
+        </head>
+
+        <body>
+
+            <header>
+
+                <nav class="navbar">
+
+                    <div class="logo">
+                        <h2>🍫 ChocoCraft</h2>
+                    </div>
+
+                    <ul class="nav-links">
+
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                        <li><a href="cart.html" class="active">Cart</a></li>
+
+                    </ul>
+
+                </nav>
+
+            </header>
+
+            <section class="products">
+
+                <h2 class="section-title">
+                    Shopping Cart
+                </h2>
+
+                <div class="product-container">
+
+                    <div class="card">
+
+                        <img src="images/choco-cake.jpg" alt="Chocolate Cake">
+
+                        <h3>Chocolate Cake</h3>
+
+                        <div class="rating">
+                            ⭐⭐⭐⭐⭐
+                        </div>
+
+                        <p>£19.99</p>
+
+                        <div style="display:flex;gap:10px;margin-top:15px;">
+
+                            <button onclick="decreaseQty()">-</button>
+
+                            <input id="qty" type="text" value="1" readonly style="width:50px;text-align:center;">
+
+                            <button onclick="increaseQty()">+</button>
+
+                        </div>
+
+                        <br>
+
+                        <button onclick="removeItem()">
+
+Remove Item
+
+</button>
+
+                    </div>
+
+                </div>
+
+                <div style="text-align:center;margin-top:50px;">
+
+                    <h2>
+
+                        Total : £<span id="totalPrice">19.99</span>
+
+                    </h2>
+
+                    <br>
+
+                    <button class="btn1">
+
+Proceed To Checkout
+
+</button>
+
+                </div>
+
+            </section>
+
+            <script>
+                let qty = 1;
+
+                const price = 19.99;
+
+                function updateTotal() {
+
+                    document.getElementById("qty").value = qty;
+
+                    document.getElementById("totalPrice").innerHTML = (qty * price).toFixed(2);
+
+                }
+
+                function increaseQty() {
+
+                    qty++;
+
+                    updateTotal();
+
+                }
+
+                function decreaseQty() {
+
+                    if (qty > 1) {
+
+                        qty--;
+
+                        updateTotal();
+
+                    }
+
+                }
+
+                function removeItem() {
+
+                    qty = 0;
+
+                    document.querySelector(".card").style.display = "none";
+
+                    document.getElementById("totalPrice").innerHTML = "0.00";
+
+                    alert("Item Removed");
+
+                }
+            </script>
+
+        </body>
+
+        </html>
+        <!DOCTYPE html>
+        <html lang="en">
+
+        <head>
+
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+            <title>Checkout | ChocoCraft</title>
+
+            <link rel="stylesheet" href="css/style.css">
+
+        </head>
+
+        <body>
+
+            <header>
+
+                <nav class="navbar">
+
+                    <div class="logo">
+                        <h2>🍫 ChocoCraft</h2>
+                    </div>
+
+                    <ul class="nav-links">
+
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="cart.html">Cart</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+
+                    </ul>
+
+                </nav>
+
+            </header>
+
+            <section class="contact">
+
+                <h2 class="section-title">
+
+                    Checkout
+
+                </h2>
+
+                <div class="contact-container">
+
+                    <form class="contact-form">
+
+                        <input type="text" placeholder="Full Name" required>
+
+                        <input type="tel" placeholder="Phone Number" required>
+
+                        <input type="email" placeholder="Email Address">
+
+                        <textarea rows="4" placeholder="Delivery Address" required></textarea>
+
+                        <select>
+
+<option>Cash On Delivery</option>
+
+<option>Credit Card</option>
+
+<option>Debit Card</option>
+
+<option>UPI Payment</option>
+
+</select>
+
+                        <h3>Total : £19.99</h3>
+
+                        <button type="submit">
+
+Place Order
+
+</button>
+
+                    </form>
+
+                </div>
+
+            </section>
+
+            <script>
+                document.querySelector("form").addEventListener("submit", function(e) {
+
+                    e.preventDefault();
+
+                    alert("🎉 Order Placed Successfully!");
+
+                    window.location.href = "index.html";
+
+                });
+            </script>
+
+        </body>
+
+        </html>
+        <!DOCTYPE html>
+        <html lang="en">
+
+        <head>
+
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+            <title>Gallery | ChocoCraft</title>
+
+            <link rel="stylesheet" href="css/style.css">
+
+        </head>
+
+        <body>
+
+            <header>
+
+                <nav class="navbar">
+
+                    <div class="logo">
+                        <h2>🍫 ChocoCraft</h2>
+                    </div>
+
+                    <ul class="nav-links">
+
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="gallery.html" class="active">Gallery</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+
+                    </ul>
+
+                </nav>
+
+            </header>
+
+
+            <section class="products">
+
+                <h2 class="section-title">
+
+                    Our Gallery
+
+                </h2>
+
+                <div class="product-container">
+
+                    <div class="card">
+                        <img src="images/choco-cake.jpg">
+                        <h3>Chocolate Cake</h3>
+                    </div>
+
+                    <div class="card">
+                        <img src="images/red-velvet.jpg">
+                        <h3>Red Velvet Cake</h3>
+                    </div>
+
+                    <div class="card">
+                        <img src="images/truffle-cake.jpg">
+                        <h3>Truffle Cake</h3>
+                    </div>
+
+                    <div class="card">
+                        <img src="images/chocolate-box.jpg">
+                        <h3>Chocolate Box</h3>
+                    </div>
+
+                    <div class="card">
+                        <img src="images/black-forest.jpg">
+                        <h3>Black Forest</h3>
+                    </div>
+
+                    <div class="card">
+                        <img src="images/cupcake.jpg">
+                        <h3>Cup Cake</h3>
+                    </div>
+
+                    <div class="card">
+                        <img src="images/donut.jpg">
+                        <h3>Donut</h3>
+                    </div>
+
+                    <div class="card">
+                        <img src="images/brownie.jpg">
+                        <h3>Brownie</h3>
+                    </div>
+
+                </div>
+
+            </section>
+
+            <footer>
+
+                <p class="copyright">
+
+                    © 2026 ChocoCraft. All Rights Reserved.
+
+                </p>
+
+            </footer>
+
+            <script src="js/script.js"></script>
+
+        </body>
+
+        </html>
+        <!DOCTYPE html>
+        <html lang="en">
+
+        <head>
+
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+            <title>Offers | ChocoCraft</title>
+
+            <link rel="stylesheet" href="css/style.css">
+
+        </head>
+
+        <body>
+
+            <header>
+
+                <nav class="navbar">
+
+                    <div class="logo">
+                        <h2>🍫 ChocoCraft</h2>
+                    </div>
+
+                    <ul class="nav-links">
+
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="gallery.html">Gallery</a></li>
+                        <li><a href="offers.html" class="active">Offers</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+
+                    </ul>
+
+                </nav>
+
+            </header>
+
+
+            <section class="products">
+
+                <h2 class="section-title">
+
+                    🔥 Today's Offers
+
+                </h2>
+
+                <div class="product-container">
+
+                    <div class="card">
+
+                        <span class="discount">30% OFF</span>
+
+                        <img src="images/choco-cake.jpg">
+
+                        <h3>Chocolate Cake</h3>
+
+                        <p><del>£30.00</del></p>
+
+                        <p>£21.00</p>
+
+                        <button>Add To Cart</button>
+
+                    </div>
+
+                    <div class="card">
+
+                        <span class="discount">25% OFF</span>
+
+                        <img src="images/red-velvet.jpg">
+
+                        <h3>Red Velvet Cake</h3>
+
+                        <p><del>£28.00</del></p>
+
+                        <p>£21.00</p>
+
+                        <button>Add To Cart</button>
+
+                    </div>
+
+                    <div class="card">
+
+                        <span class="discount">40% OFF</span>
+
+                        <img src="images/chocolate-box.jpg">
+
+                        <h3>Chocolate Gift Box</h3>
+
+                        <p><del>£20.00</del></p>
+
+                        <p>£12.00</p>
+
+                        <button>Add To Cart</button>
+
+                    </div>
+
+                    <div class="card">
+
+                        <span class="discount">BUY 1 GET 1</span>
+
+                        <img src="images/donut.jpg">
+
+                        <h3>Chocolate Donut</h3>
+
+                        <p>Special Weekend Offer</p>
+
+                        <button>Claim Offer</button>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <section class="offer">
+
+                <div class="offer-box">
+
+                    <h2>
+
+                        🎉 Weekend Mega Sale
+
+                    </h2>
+
+                    <p>
+
+                        Free Delivery for Orders Above £25
+
+                    </p>
+
+                    <button>
+
+Order Now
+
+</button>
+
+                </div>
+
+            </section>
+
+
+            <footer>
+
+                <p class="copyright">
+
+                    © 2026 ChocoCraft. All Rights Reserved.
+
+                </p>
+
+            </footer>
+
+            <script src="js/script.js"></script>
+
+        </body>

@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Payment | ChocoCraft</title>
+
+    <link rel="stylesheet" href="css/style.css">
+
+</head>
+
+
+<body>
+
+
+    <header>
+
+        <nav class="navbar">
+
+            <div class="logo">
+                <h2>🍫 ChocoCraft</h2>
+            </div>
+            <li id="loginLink">
+
+                <a href="login.html">
+Login 🔐
+</a>
+
+            </li>
+
+
+            <li id="userBox" style="display:none;">
+
+                <span id="userName">
+
+</span>
+
+            </li>
+
+
+            <li id="logoutLink" style="display:none;">
+
+                <a href="#" onclick="logoutUser()">
+
+Logout 🚪
+
+</a>
+
+            </li>
+
+
+            <ul class="nav-links">
+
+                <li><a href="index.html">Home</a></li>
+
+                <li><a href="cart.html">Cart</a></li>
+
+            </ul>
+
+
+        </nav>
+
+    </header>
+
+
+
+    <section class="contact">
+
+
+        <h1 class="section-title">
+
+            Choose Payment 💳
+
+        </h1>
+
+
+
+        <div class="contact-container">
+
+
+
+            <div class="contact-form">
+
+
+
+                <h3>
+                    Select Payment Method
+                </h3>
+
+
+
+                <label>
+
+<input type="radio" name="payment" value="COD">
+
+Cash On Delivery
+
+</label>
+
+
+                <br>
+
+
+                <label>
+
+<input type="radio" name="payment" value="UPI">
+
+UPI Payment
+
+</label>
+
+
+                <br>
+
+
+                <label>
+
+<input type="radio" name="payment" value="Card">
+
+Card Payment
+
+</label>
+
+
+
+                <br><br>
+
+
+
+                <input type="text" placeholder="UPI ID (example@upi)">
+
+
+
+                <input type="text" placeholder="Card Number">
+
+
+
+                <button onclick="completePayment()">
+
+Pay Now ✅
+
+</button>
+
+
+
+            </div>
+
+
+        </div>
+
+
+    </section>
+
+
+
+    <script>
+        function completePayment() {
+
+
+            let method =
+                document.querySelector(
+                    'input[name="payment"]:checked'
+                );
+
+
+
+            if (!method) {
+
+
+                alert("Please select payment method");
+
+
+                return;
+
+
+            }
+
+
+
+            alert(
+                "Payment Successful 💳"
+            );
+
+
+
+            window.location.href = "success.html";
+
+
+        }
+    </script>
+
+
+
+</body>
+
+</html>

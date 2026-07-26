@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>My Orders | ChocoCraft</title>
+
+    <link rel="stylesheet" href="css/style.css">
+
+</head>
+
+
+<body>
+
+
+    <header>
+
+        <nav class="navbar">
+
+            <div class="logo">
+
+                <h2>🍫 ChocoCraft</h2>
+
+            </div>
+
+
+            <ul class="nav-links">
+
+                <li>
+                    <a href="index.html">
+Home
+</a>
+                </li>
+
+
+                <li>
+                    <a href="products.html">
+Products
+</a>
+                </li>
+
+
+                <li>
+                    <a href="orders.html">
+My Orders
+</a>
+                </li>
+
+            </ul>
+
+        </nav>
+
+    </header>
+
+
+
+    <section class="products">
+
+
+        <h1 class="section-title">
+
+            My Orders 📦
+
+        </h1>
+
+
+
+        <div id="myOrders" class="product-container">
+
+
+        </div>
+
+
+    </section>
+
+
+
+    <script src="js/script.js"></script>
+
+
+</body>
+
+</html>function updateStatus(index){ let orders = JSON.parse( localStorage.getItem("orders") ) || []; let statusList = [ "Pending", "Preparing", "Delivered" ]; let current = orders[index].status; let next = statusList[ (statusList.indexOf(current)+1) % statusList.length
+]; orders[index].status = next; localStorage.setItem( "orders", JSON.stringify(orders) ); alert( "Status Updated: "+next ); showOrders(); }

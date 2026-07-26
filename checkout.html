@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Checkout | ChocoCraft</title>
+
+    <link rel="stylesheet" href="css/style.css">
+
+</head>
+
+
+<body>
+
+
+    <header>
+
+        <nav class="navbar">
+
+            <div class="logo">
+                <h2>🍫 ChocoCraft</h2>
+            </div>
+            <li id="loginLink">
+
+                <a href="login.html">
+Login 🔐
+</a>
+
+            </li>
+
+
+            <li id="userBox" style="display:none;">
+
+                <span id="userName">
+
+</span>
+
+            </li>
+
+
+            <li id="logoutLink" style="display:none;">
+
+                <a href="#" onclick="logoutUser()">
+
+Logout 🚪
+
+</a>
+
+            </li>
+
+
+            <ul class="nav-links">
+
+                <li><a href="index.html">Home</a></li>
+
+                <li><a href="products.html">Products</a></li>
+
+                <li><a href="cart.html">Cart</a></li>
+
+            </ul>
+
+        </nav>
+
+    </header>
+
+
+
+    <section class="contact">
+
+
+        <h1 class="section-title">
+
+            Delivery Details 📦
+
+        </h1>
+
+
+
+        <div class="contact-container">
+
+
+
+            <form id="checkoutForm" class="contact-form">
+
+
+
+                <input type="text" id="customerName" placeholder="Full Name" required>
+
+
+
+                <input type="tel" id="phone" placeholder="Phone Number" required>
+
+
+
+                <textarea id="address" rows="5" placeholder="Delivery Address" required></textarea>
+
+
+
+                <select id="payment">
+
+<option>
+Cash On Delivery
+</option>
+
+<option>
+UPI Payment
+</option>
+
+<option>
+Card Payment
+</option>
+
+</select>
+
+
+
+                <button type="submit">
+
+Place Order 🎂
+
+</button>
+
+
+
+            </form>
+
+
+
+        </div>
+
+
+    </section>
+
+
+
+    <script src="js/script.js"></script>
+
+
+    <script>
+        document
+            .getElementById("checkoutForm")
+            .addEventListener("submit", function(e) {
+
+
+                e.preventDefault();
+
+
+
+                let order = {
+
+
+                    name: document.getElementById("customerName").value,
+
+
+                    phone: document.getElementById("phone").value,
+
+
+                    address: document.getElementById("address").value,
+
+
+                    payment: document.getElementById("payment").value,
+
+
+                    products: JSON.parse(localStorage.getItem("cart")) || [],
+
+
+                    date: new Date().toLocaleDateString()
+
+
+
+                };
+
+
+
+                let orders =
+                    JSON.parse(localStorage.getItem("orders")) || [];
+
+
+
+                orders.push(order);
+
+
+
+                localStorage.setItem(
+                    "orders",
+                    JSON.stringify(orders)
+                );
+
+
+
+                localStorage.removeItem("cart");
+
+
+
+                alert("🎉 Order Placed Successfully");
+
+
+
+                window.location.href = "success.html";
+
+
+
+            });
+    </script>
+
+
+</body>
+
+</html><input type="text" id="customerName" placeholder="Full Name" required><input type="tel" id="phone" placeholder="Phone Number" required>// AUTO FILL USER DETAILS let loginUser = JSON.parse( localStorage.getItem("user") ); let logged = localStorage.getItem("loggedIn");
+if(logged==="true" && loginUser){ document.getElementById("customerName") .value = loginUser.name; document.getElementById("phone") .value = loginUser.phone; } else{ alert("Please Login First 🔐"); window.location.href="login.html"; }let order = { name:
+document.getElementById("customerName").value, phone: document.getElementById("phone").value, address: document.getElementById("address").value, payment: document.getElementById("payment").value, products: JSON.parse(localStorage.getItem("cart")) || [],
+date: new Date().toLocaleDateString(), status: "Pending" };
