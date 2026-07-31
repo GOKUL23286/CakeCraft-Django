@@ -36,8 +36,8 @@ from django.shortcuts import redirect
 from .models import Product, Cart
 
 @login_required(login_url='login')
-def add_to_cart(request, id):
-    product = Product.objects.get(id=id)
+def add_to_cart(request,product_id):
+    product = Product.objects.get(id=product_id)
 
     cart = Cart.objects.create(
         user=request.user,
